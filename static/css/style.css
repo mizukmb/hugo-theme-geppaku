@@ -225,6 +225,10 @@ a:hover {
   margin-left: 14px;
 }
 
+#author img {
+  width: 40%;
+}
+
 #author span {
   display: inline-block;
   margin-bottom: 5px;
