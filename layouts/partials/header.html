@@ -12,6 +12,53 @@
     <link href="/index.xml" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}" />
     {{ end }}
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <!-- JSONLD -->
+    <script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Blog",
+  "alternativeHeadline": "{{ if not .IsHome }}{{ humanize .Title }} | {{ end }}{{ .Site.Title | plainify }}",
+  "url": "{{ .Site.BaseURL }}",
+  "image": "{{ .Site.BaseURL }}/images/mizukmb.png",
+  "author": {
+    "@type": "Person",
+    "name": "mizukmb",
+    "url": [
+        "https://github.com/mizukmb",
+        "https://twitter.com/mizukmb"
+    ],
+    "image": "http://1.gravatar.com/avatar/a622327832207d7a36b23b07f16c9c85"
+  }{{ if .IsPage }},
+  "blogPost": {
+    "@type": "BlogPosting",
+  "author": {
+    "@type": "Person",
+    "name": "mizukmb",
+    "url": [
+        "https://github.com/mizukmb",
+        "https://twitter.com/mizukmb"
+    ],
+    "image": "http://1.gravatar.com/avatar/a622327832207d7a36b23b07f16c9c85"
+  },
+  "headline": "{{ substr (replace (.Content | plainify) "\n" "") 0 110 }}",
+  "image": "{{ .Site.BaseURL }}/images/mizukmb.png",
+  "name": "{{ .Site.Title }}",
+  "publisher": {
+    "@type": "Organization",
+    "logo": "http://1.gravatar.com/avatar/a622327832207d7a36b23b07f16c9c85",
+    "name": "mizukmb"
+  },
+  "alternativeHeadline": "{{ .Site.Title  | plainify}}",
+  "dateCreated": "{{ .Date.Format "2006/01/02" }}",
+  "datePublished": "{{ .Date.Format "2006/01/02" }}",
+  {{ if .Params.tags }}"keywords":  "{{ .Params.tags }}",{{ end }}
+  "inLanguage": "Japanese"
+  }
+  {{ end }}
+}
+    </script>
+
+
     <!-- font awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <!-- google_analytics -->
