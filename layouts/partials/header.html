@@ -19,40 +19,40 @@
   "@type": "Blog",
   "alternativeHeadline": "{{ if not .IsHome }}{{ humanize .Title }} | {{ end }}{{ .Site.Title | plainify }}",
   "url": "{{ .Site.BaseURL }}",
-  "image": "{{ .Site.BaseURL }}/images/mizukmb.png",
+  "image": "{{ .Site.BaseURL }}/images/{{ .Site.Author.name }}.png",
   "author": {
     "@type": "Person",
-    "name": "mizukmb",
+    "name": "{{ .Site.Author.name }}",
     "url": [
-        "https://github.com/mizukmb",
-        "https://twitter.com/mizukmb"
+        "https://github.com/{{ .Site.Author.github }}",
+        "https://twitter.com/{{ .Site.Author.twitter }}"
     ],
-    "image": "http://1.gravatar.com/avatar/a622327832207d7a36b23b07f16c9c85"
+    "image": "{{ .Site.Params.gravator }}"
   }{{ if .IsPage }},
   "blogPost": {
     "@type": "BlogPosting",
   "author": {
     "@type": "Person",
-    "name": "mizukmb",
+    "name": "{{ .Site.Author.name }}",
     "url": [
         "https://github.com/mizukmb",
         "https://twitter.com/mizukmb"
     ],
-    "image": "http://1.gravatar.com/avatar/a622327832207d7a36b23b07f16c9c85"
+    "image": "{{ .Site.Params.gravator }}"
   },
   "headline": "{{ substr (replace (.Content | plainify) "\n" "") 0 110 }}",
-  "image": "{{ .Site.BaseURL }}/images/mizukmb.png",
+  "image": "{{ .Site.BaseURL }}/images/{{ .Site.Author.name }}.png",
   "name": "{{ .Site.Title }}",
   "publisher": {
     "@type": "Organization",
-    "logo": "http://1.gravatar.com/avatar/a622327832207d7a36b23b07f16c9c85",
-    "name": "mizukmb"
+    "logo": "{{ .Site.Params.gravator }}",
+    "name": "{{ .Site.Author.name }}"
   },
   "alternativeHeadline": "{{ .Site.Title  | plainify}}",
   "dateCreated": "{{ .Date.Format "2006/01/02" }}",
   "datePublished": "{{ .Date.Format "2006/01/02" }}",
-  {{ if .Params.tags }}"keywords":  "{{ .Params.tags }}",{{ end }}
-  "inLanguage": "Japanese"
+  {{ if .Params.tags }}"keywords":  "{{ delimit .Params.tags " " }}",{{ end }}
+  "inLanguage": "{{ .Site.Params.lang }}"
   }
   {{ end }}
 }
