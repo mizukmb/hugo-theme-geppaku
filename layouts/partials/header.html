@@ -11,6 +11,12 @@
     <link href="/index.xml" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
     <link href="/index.xml" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}" />
     {{ end }}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="{{ .Site.Params.twittercard.site }}" />
+    <meta name="twitter:title" content="{{ if not .IsHome }}{{ humanize .Title }} | {{ end }}{{ .Site.Title | plainify }}" />
+    <meta name="twitter:description" content="{{ if not .IsPage }}{{ .Site.Params.twittercard.homedescription }}{{ else }}{{ substr (replace (.Content | plainify) "\n" "") 0 200 }}{{ end }}" />
+    <meta name="twitter:image" content="{{ .Site.Params.twittercard.image }}" />
+    <meta name="twitter:url" content="{{ .Permalink }}" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <!-- JSONLD -->
     <script type="application/ld+json">
