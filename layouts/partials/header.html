@@ -15,7 +15,7 @@
     <meta name="twitter:site" content="{{ .Site.Params.twittercard.site }}" />
     <meta name="twitter:title" content="{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ .Site.Title | plainify }}" />
     <meta name="twitter:description" content="{{ if not .IsPage }}{{ .Site.Params.twittercard.homedescription }}{{ else }}{{ substr (replace (.Content | plainify) "\n" "") 0 200 }}{{ end }}" />
-    <meta name="twitter:image" content="{{ .Site.Params.twittercard.image }}" />
+    <meta name="twitter:image" content="{{if .Params.image }}{{ .Params.image | absURL }}{{ else }}{{ .Site.Params.twittercard.image }}{{ end }}" />
     <meta name="twitter:url" content="{{ .Permalink }}" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <!-- JSONLD -->
