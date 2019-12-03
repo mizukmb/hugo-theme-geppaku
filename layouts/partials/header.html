@@ -1,16 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
   <head>
+    {{ with .OutputFormats.Get "rss" -}}
+    {{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+    {{ end -}}
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     {{ .Hugo.Generator }}
     <link rel="shortcut icon" href="/images/favicon.ico">
-    {{ if .RSSlink }}
-    <link href="{{ .RSSlink }}" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
-    <link href="{{ .RSSlink }}" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}" />
-    {{ else }}
-    <link href="/index.xml" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
-    <link href="/index.xml" rel="feed" type="application/rss+xml" title="{{ .Site.Title }}" />
-    {{ end }}
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="{{ .Site.Params.twittercard.site }}" />
     <meta name="twitter:title" content="{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ .Site.Title | plainify }}" />
